@@ -1,85 +1,31 @@
-.div-circle-orange {
-  width: 8vh;
-  padding-bottom: 8vh;
-  border-color: #FB7B25;
+@mixin ring($size, $color) {
+  
+  width: $size;
+  padding-bottom: $size;
+  border-color: $color;
   border-style: solid;
   border-radius: 100%;
-  box-shadow: 3px 3px 2px #e96004;
-  border-width: 0.6rem;
+  box-shadow: 3px 3px 2px darken($color, 10);
+}
+
+@mixin thickness($size) {
+  border-width: $size;
+}
+
+.div-circle-orange {
+  @include ring(8vh, #FB7B25);
+  @include thickness(0.6rem);
 }
 
 .div-circle-yellow {
-  width: 25vh;
-  padding-bottom: 25vh;
-  border-color: #FCCC09;
-  border-style: solid;
-  border-radius: 100%;
-  box-shadow: 3px 3px 2px #cfa703;
-  border-width: 1.5rem;
+  @include ring(25vh, #FCCC09);
+  @include thickness(1.5rem);
 }
 
-.div-circle-nested-1 {
-  width: 2vh;
-  padding-bottom: 2vh;
-  border-color: #343435;
-  border-style: solid;
-  border-radius: 100%;
-  box-shadow: 3px 3px 2px #1b1b1b;
-  border-width: 0.15rem;
-  margin: -0.5vh;
-}
-
-.div-circle-nested-2 {
-  width: 4vh;
-  padding-bottom: 4vh;
-  border-color: #343435;
-  border-style: solid;
-  border-radius: 100%;
-  box-shadow: 3px 3px 2px #1b1b1b;
-  border-width: 0.3rem;
-  margin: -1vh;
-}
-
-.div-circle-nested-3 {
-  width: 6vh;
-  padding-bottom: 6vh;
-  border-color: #343435;
-  border-style: solid;
-  border-radius: 100%;
-  box-shadow: 3px 3px 2px #1b1b1b;
-  border-width: 0.45rem;
-  margin: -1.5vh;
-}
-
-.div-circle-nested-4 {
-  width: 8vh;
-  padding-bottom: 8vh;
-  border-color: #343435;
-  border-style: solid;
-  border-radius: 100%;
-  box-shadow: 3px 3px 2px #1b1b1b;
-  border-width: 0.6rem;
-  margin: -2vh;
-}
-
-.div-circle-nested-5 {
-  width: 10vh;
-  padding-bottom: 10vh;
-  border-color: #343435;
-  border-style: solid;
-  border-radius: 100%;
-  box-shadow: 3px 3px 2px #1b1b1b;
-  border-width: 0.75rem;
-  margin: -2.5vh;
-}
-
-.div-circle-nested-6 {
-  width: 12vh;
-  padding-bottom: 12vh;
-  border-color: #343435;
-  border-style: solid;
-  border-radius: 100%;
-  box-shadow: 3px 3px 2px #1b1b1b;
-  border-width: 0.9rem;
-  margin: -3vh;
+@for $i from 1 through 6 {
+    .div-circle-nested-#{$i} {
+        @include ring(2vh*$i, #343435);
+        @include thickness(0.15rem*$i);
+        margin: -1vh*$i/2;
+    }
 }
